@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitin Gokul Subramaniam — Industrial Engineer</title>
+<meta name="description" content="Industrial Engineer (MS, Northeastern). Lean + simulation to find the constraint, Power BI + Power Automate + Python + AI to remove it permanently.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101c28;--ink-soft:#4a5d70;--paper:#f7f9fb;--card:#ffffff;
+    --line:#dde6ee;--blue:#0f4c81;--blue-deep:#082f52;--sky:#e8f1f9;
+    --amber:#f39c12;--amber-deep:#c87d06;--amber-soft:#fff3dd;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(16,28,40,.05),0 10px 30px rgba(16,28,40,.07);
+    --shadow-lift:0 4px 8px rgba(16,28,40,.06),0 24px 48px rgba(15,76,129,.16);
+    --display:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.brand,.metric b,.ghost-num{font-family:var(--display)}
+  ::selection{background:var(--amber-soft)}
+  a{color:var(--blue);text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* ---------- progress bar ---------- */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--blue),var(--amber));transition:width .1s linear}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(247,249,251,.86);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-weight:700;font-size:15.5px;letter-spacing:.2px}
+  .brand span{color:var(--blue)}
+  .nav-links{display:flex;gap:24px;font-size:14px;font-weight:600;align-items:center}
+  .nav-links a{color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-links a.cta{color:#fff;background:var(--blue);padding:8px 16px;border-radius:9px;box-shadow:0 4px 14px rgba(15,76,129,.3)}
+  .nav-links a.cta:hover{background:var(--blue-deep)}
+  @media(max-width:680px){.nav-links{gap:14px;font-size:12.5px}.nav-links a.cta{padding:7px 12px}}
+
+  /* ---------- hero ---------- */
+  header{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(rgba(15,76,129,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(15,76,129,.05) 1px,transparent 1px),
+      linear-gradient(175deg,#eef4f9 0%,var(--paper) 78%);
+    background-size:36px 36px,36px 36px,100% 100%}
+  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;padding:78px 0 86px}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;padding:60px 0 70px}.gearbox{display:none}}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;
+    letter-spacing:.6px;text-transform:uppercase;color:var(--blue-deep);
+    background:#e6eff8;border:1px solid #cdE0f0;padding:7px 15px;border-radius:99px;margin-bottom:24px}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber);
+    box-shadow:0 0 0 4px var(--amber-soft);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px var(--amber-soft)}50%{box-shadow:0 0 0 7px rgba(243,156,18,.12)}}
+  h1{font-size:clamp(36px,5.4vw,58px);line-height:1.04;letter-spacing:-1.4px;margin-bottom:20px}
+  h1 em{font-style:normal;color:var(--blue);position:relative;white-space:nowrap}
+  h1 em::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:10px;background:var(--amber-soft);z-index:-1;border-radius:3px}
+  .lede{font-size:clamp(16px,2vw,19px);color:var(--ink-soft);max-width:560px;margin-bottom:14px}
+  .lede strong{color:var(--ink)}
+  .sub{font-size:14px;color:var(--ink-soft);margin-bottom:32px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .sub .dot{width:4px;height:4px;background:var(--line);border-radius:50%}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:11px;
+    font-weight:600;font-size:15px;transition:transform .18s,box-shadow .18s;cursor:pointer;border:none;font-family:var(--body)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 22px rgba(15,76,129,.32)}
+  .btn-primary:hover{box-shadow:0 12px 30px rgba(15,76,129,.4)}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:var(--card)}
+  .btn-ghost:hover{border-color:var(--blue)}
+  .btn-amber{background:var(--amber);color:#3a2500;box-shadow:0 8px 22px rgba(243,156,18,.35)}
+
+  /* gears */
+  .gearbox{position:relative;height:340px}
+  .gear{position:absolute;fill:none;stroke:var(--blue);opacity:.5}
+  .gear.g1{width:190px;top:20px;right:70px;animation:spin 26s linear infinite}
+  .gear.g2{width:120px;top:158px;right:212px;stroke:var(--amber-deep);animation:spinR 18s linear infinite}
+  .gear.g3{width:86px;top:210px;right:52px;animation:spin 14s linear infinite;opacity:.35}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes spinR{to{transform:rotate(-360deg)}}
+  .flowline{position:absolute;left:-30px;top:52%;width:110%;border-top:2px dashed rgba(15,76,129,.22)}
+
+  /* ---------- metrics ---------- */
+  .metrics{position:relative;top:-44px}
+  .metric-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden}
+  @media(max-width:860px){.metric-grid{grid-template-columns:repeat(2,1fr)}.metric:last-child{grid-column:1/-1}}
+  .metric{padding:26px 18px 22px;text-align:center;position:relative;border-right:1px solid var(--line)}
+  .metric:last-child{border-right:none}
+  @media(max-width:860px){.metric{border-bottom:1px solid var(--line)}}
+  .metric::before{content:"";position:absolute;top:0;left:20%;right:20%;height:3px;border-radius:0 0 4px 4px;background:var(--blue)}
+  .metric:nth-child(even)::before{background:var(--amber)}
+  .metric b{display:block;font-size:clamp(26px,3vw,36px);font-weight:700;color:var(--blue-deep);
+    letter-spacing:-.5px;font-variant-numeric:tabular-nums;line-height:1.1}
+  .metric b em{font-style:normal;color:var(--amber-deep);font-size:.66em;font-weight:700}
+  .metric span{font-size:12px;color:var(--ink-soft);line-height:1.4;display:block;margin-top:7px;font-weight:500}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0}
+  .sec-head{margin-bottom:38px;display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--amber-deep);
+    display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--amber)}
+  .sec-head h2{font-size:clamp(26px,3.6vw,36px);letter-spacing:-.8px;margin-top:8px}
+  .sec-head p{color:var(--ink-soft);margin-top:8px;max-width:600px;font-size:15px}
+
+  /* ---------- process strip ---------- */
+  .process{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch;margin-top:-6px}
+  @media(max-width:760px){.process{grid-template-columns:1fr}.proc-arrow{transform:rotate(90deg);margin:-4px auto}}
+  .proc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow);text-align:left;position:relative}
+  .proc .step{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:1.6px;color:var(--amber-deep)}
+  .proc h3{font-size:19px;margin:6px 0 8px;letter-spacing:-.3px}
+  .proc p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+  .proc-arrow{align-self:center;color:var(--blue);opacity:.45;font-size:22px;font-weight:700}
+
+  /* ---------- case cards ---------- */
+  .case{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:36px 38px 30px 108px;margin-bottom:26px;overflow:hidden;
+    transition:transform .22s,box-shadow .22s}
+  .case:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+  .case::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}
+  .case:nth-child(even)::before{background:var(--amber)}
+  @media(max-width:720px){.case{padding:26px 22px 24px 22px}}
+  .ghost-num{position:absolute;left:22px;top:18px;font-size:64px;font-weight:700;color:var(--sky);
+    letter-spacing:-3px;line-height:1;user-select:none}
+  .case:nth-child(even) .ghost-num{color:var(--amber-soft)}
+  @media(max-width:720px){.ghost-num{position:static;font-size:34px;display:block;margin-bottom:4px}}
+  .case-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline;flex-wrap:wrap}
+  .case h3{font-size:clamp(20px,2.6vw,25px);letter-spacing:-.5px}
+  .where{font-size:12.5px;color:var(--ink-soft);white-space:nowrap;font-weight:600;
+    background:var(--paper);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+  .headline{font-size:15px;color:var(--blue-deep);font-weight:600;margin:8px 0 16px}
+  .case p.body{font-size:14.5px;color:var(--ink-soft);max-width:760px}
+  .case p.body b{color:var(--ink)}
+  .impact{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .pill{display:inline-flex;align-items:baseline;gap:7px;background:linear-gradient(180deg,#f2f7fc,#e9f1f9);
+    border:1px solid #d3e2f0;border-radius:11px;padding:9px 16px}
+  .pill b{font-family:var(--display);font-size:19px;color:var(--blue-deep);font-variant-numeric:tabular-nums}
+  .pill span{font-size:11.5px;font-weight:600;color:var(--ink-soft);letter-spacing:.2px}
+  .tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:11.5px;font-weight:600;color:var(--blue-deep);background:#eef4fa;
+    border:1px solid #d8e5f1;padding:4px 11px;border-radius:99px}
+  .confid{margin-top:12px;font-size:12px;color:var(--ink-soft);font-style:italic}
+
+  /* ---------- mini projects ---------- */
+  .mini-head{font-size:13px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+    color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+  .mini-head::after{content:"";flex:1;height:1px;background:var(--line)}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.mini-grid{grid-template-columns:1fr}}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+    box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .mini:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+  .mini h5{font-size:14.5px;letter-spacing:-.1px;margin-bottom:5px;font-family:var(--display)}
+  .mini p{font-size:12.8px;color:var(--ink-soft);line-height:1.55}
+  .mini p b{color:var(--ink)}
+  .mini a{font-size:12px;font-weight:600}
+
+  /* ---------- skills ---------- */
+  .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.skill-grid{grid-template-columns:1fr}}
+  .skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow)}
+  .skill-card h4{font-size:15px;letter-spacing:-.1px;margin-bottom:13px;display:flex;align-items:center;gap:10px}
+  .skill-card h4 .ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    background:var(--sky);font-size:15px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:12.5px;font-weight:500;padding:6px 12px;border-radius:9px;background:var(--paper);
+    border:1px solid var(--line);transition:border-color .2s,transform .2s}
+  .chip:hover{border-color:var(--amber);transform:translateY(-1px)}
+
+  /* ---------- about ---------- */
+  .two-col{display:grid;grid-template-columns:1.35fr 1fr;gap:44px}
+  @media(max-width:860px){.two-col{grid-template-columns:1fr}}
+  .about p{color:var(--ink-soft);margin-bottom:14px;font-size:15px}
+  .about p b{color:var(--ink)}
+  .fact-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .fact{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 14px;
+    font-size:12.5px;font-weight:600;color:var(--ink-soft)}
+  .fact b{color:var(--blue-deep)}
+  .edu-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;box-shadow:var(--shadow);margin-bottom:14px;position:relative;padding-left:34px}
+  .edu-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+    border-radius:var(--radius) 0 0 var(--radius);background:var(--blue)}
+  .edu-card:nth-child(3)::before{background:var(--amber)}
+  .edu-card h4{font-size:15.5px}
+  .edu-card .deg{font-size:13.5px;color:var(--ink-soft);margin-top:3px;line-height:1.5}
+  .edu-card .yr{font-size:11.5px;color:var(--amber-deep);font-weight:700;margin-top:7px;letter-spacing:1px}
+  .cert-list{list-style:none;font-size:13.5px;color:var(--ink-soft)}
+  .cert-list li{padding:7px 0;border-bottom:1px dashed var(--line)}
+  .cert-list li:last-child{border:none}
+  .cert-list b{color:var(--ink)}
+
+  /* ---------- contact ---------- */
+  .contact{background:linear-gradient(155deg,var(--blue-deep),var(--blue) 75%);border-radius:22px;
+    color:#fff;text-align:center;padding:66px 30px;margin:14px 0 74px;position:relative;overflow:hidden}
+  .contact::before{content:"";position:absolute;inset:0;
+    background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:36px 36px}
+  .contact>*{position:relative}
+  .contact h2{font-size:clamp(25px,3.6vw,36px);letter-spacing:-.8px;margin-bottom:12px}
+  .contact p{opacity:.85;max-width:540px;margin:0 auto 28px;font-size:15px}
+  .contact .btn-primary{background:#fff;color:var(--blue-deep);box-shadow:0 10px 26px rgba(0,0,0,.28)}
+  .contact .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
+  footer{padding:0 0 110px;text-align:center;font-size:12.5px;color:var(--ink-soft)}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- chatbot ---------- */
+  #bot-launch{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;align-items:center;gap:11px;
+    background:var(--blue);color:#fff;border:none;border-radius:99px;padding:14px 22px;cursor:pointer;
+    font-family:var(--body);font-weight:700;font-size:14.5px;box-shadow:0 12px 32px rgba(8,47,82,.4);
+    transition:transform .2s,box-shadow .2s}
+  #bot-launch:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(8,47,82,.5)}
+  #bot-launch .live{width:9px;height:9px;border-radius:50%;background:#5cf28b;animation:pulse 2s infinite}
+  #bot{position:fixed;right:22px;bottom:92px;z-index:81;width:390px;max-width:calc(100vw - 24px);
+    height:560px;max-height:calc(100vh - 130px);background:var(--card);border:1px solid var(--line);
+    border-radius:20px;box-shadow:0 24px 70px rgba(8,47,82,.35);display:none;flex-direction:column;overflow:hidden}
+  #bot.open{display:flex;animation:rise .3s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .bot-head{background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff;padding:16px 18px;
+    display:flex;align-items:center;gap:12px}
+  .bot-avatar{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.15);
+    display:grid;place-items:center;font-size:19px}
+  .bot-head h5{font-size:15px;font-family:var(--display)}
+  .bot-head small{display:block;font-size:11px;opacity:.75;font-weight:400}
+  .bot-close{margin-left:auto;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;opacity:.8}
+  #bot-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--paper)}
+  .msg{max-width:84%;padding:11px 15px;border-radius:15px;font-size:13.6px;line-height:1.55;white-space:pre-line}
+  .msg.bot{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--ink)}
+  .msg.bot b{color:var(--blue-deep)}
+  .msg.user{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:5px}
+  .typing{display:inline-flex;gap:4px;padding:13px 16px}
+  .typing i{width:7px;height:7px;border-radius:50%;background:#9db4c8;animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+  #bot-chips{display:flex;gap:8px;padding:10px 14px;overflow-x:auto;border-top:1px solid var(--line);background:var(--card)}
+  #bot-chips::-webkit-scrollbar{display:none}
+  .qchip{flex:0 0 auto;font-size:12px;font-weight:600;color:var(--blue-deep);background:var(--sky);
+    border:1px solid #cfe0ef;border-radius:99px;padding:7px 13px;cursor:pointer;white-space:nowrap;
+    transition:background .2s}
+  .qchip:hover{background:#d9e8f5}
+  .bot-input{display:flex;gap:9px;padding:12px 14px;border-top:1px solid var(--line);background:var(--card)}
+  .bot-input input{flex:1;border:1.5px solid var(--line);border-radius:11px;padding:11px 14px;
+    font-size:13.5px;font-family:var(--body);outline:none;transition:border-color .2s}
+  .bot-input input:focus{border-color:var(--blue)}
+  .bot-input button{background:var(--amber);border:none;border-radius:11px;padding:0 18px;cursor:pointer;
+    font-size:16px;font-weight:700;color:#3a2500;transition:transform .15s}
+  .bot-input button:hover{transform:scale(1.06)}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .gear,.eyebrow::before,#bot-launch .live{animation:none}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">Nitin Gokul <span>Subramaniam</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Industrial Engineer · Boston, MA · Open to relocation</div>
+        <h1>I find what slows a factory down, <em>then automate it away</em>.</h1>
+        <p class="lede">Lean, Six Sigma, and <strong>ARENA simulation</strong> to locate the constraint. <strong>Power BI, Power Automate, Python, and AI agents</strong> to remove it permanently. Most IEs hand that second half to someone else. I build it myself.</p>
+        <p class="sub"><span>MS Industrial Engineering, Northeastern University</span><span class="dot"></span><span>May 2026</span><span class="dot"></span><span>Six Sigma Green Belt</span></p>
+        <div class="btns">
+          <a class="btn btn-primary" href="mailto:nitingokulsubramaniamr@gmail.com">✉ &nbsp;Email me</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/nitingokuls" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <button class="btn btn-amber" onclick="botOpen('Why should we interview Nitin?')">⚡ Ask NitinBot</button>
+        </div>
+      </div>
+      <div class="gearbox" aria-hidden="true">
+        <div class="flowline"></div>
+        <svg class="gear g1" viewBox="0 0 100 100" stroke-width="2.6">
+          <circle cx="50" cy="50" r="26"/><circle cx="50" cy="50" r="9"/>
+          <g><path d="M50 12v12M50 76v12M12 50h12M76 50h12M23 23l8.5 8.5M68.5 68.5L77 77M77 23l-8.5 8.5M31.5 68.5L23 77" stroke-linecap="round" stroke-width="7"/></g>
+        </svg>
+        <svg class="gear g2" viewBox="0 0 100 100" stroke-width="3">
+          <circle cx="50" cy="50" r="24"/><circle cx="50" cy="50" r="8"/>
+          <g><path d="M50 14v12M50 74v12M14 50h12M74 50h12M25 25l8 8M67 67l8 8M75 25l-8 8M33 67l-8 8" stroke-linecap="round" stroke-width="8"/></g>
+        </svg>
+        <svg class="gear g3" viewBox="0 0 100 100" stroke-width="3.4">
+          <circle cx="50" cy="50" r="23"/><circle cx="50" cy="50" r="8"/>
+          <g><path d="M50 15v11M50 74v11M15 50h11M74 50h11M26 26l8 8M66 66l8 8M74 26l-8 8M34 66l-8 8" stroke-linecap="round" stroke-width="8"/></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap metrics">
+  <div class="metric-grid reveal">
+    <div class="metric"><b><span class="count" data-target="26.5" data-dec="1">0</span></b><span>hrs/week of manual work removed at S&amp;V Industries</span></div>
+    <div class="metric"><b><span class="count" data-target="21">0</span></b><span>Power Automate workflows across 5 departments</span></div>
+    <div class="metric"><b><span class="count" data-target="50">0</span><em>%</em></b><span>throughput increase at Revathie Gear Products</span></div>
+    <div class="metric"><b><span class="count" data-target="30">0</span><em>%</em></b><span>machine downtime reduction from simulation findings</span></div>
+    <div class="metric"><b>.<span class="count" data-target="957">0</span></b><span>ROC AUC — turbofan predictive maintenance model</span></div>
+  </div>
+</div>
+
+<section style="padding-top:6px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker">Method</div>
+        <h2>How I work, every time</h2>
+      </div>
+    </div>
+    <div class="process reveal">
+      <div class="proc"><div class="step">STEP 01</div><h3>Find</h3><p>Walk the process, map the flow, simulate it. The real constraint is rarely where everyone thinks it is.</p></div>
+      <div class="proc-arrow">➜</div>
+      <div class="proc"><div class="step">STEP 02</div><h3>Fix</h3><p>Lean, 5S, layout redesign, capacity scenarios — validated in ARENA before anyone spends money.</p></div>
+      <div class="proc-arrow">➜</div>
+      <div class="proc"><div class="step">STEP 03</div><h3>Automate</h3><p>Dashboards, workflows, and AI agents so the fix keeps running without me standing next to it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker">Selected Work</div>
+        <h2>Four problems. Four numbers.</h2>
+      </div>
+      <p>Same pattern every time: find the constraint, prove the fix, put a number on it.</p>
+    </div>
+
+    <div class="case reveal">
+      <div class="ghost-num">01</div>
+      <div class="case-top">
+        <h3>A company's first digital transformation</h3>
+        <div class="where">S&amp;V Industries · Ohio · 2025</div>
+      </div>
+      <div class="headline">Zero automation to 21 live workflows, 7 dashboards, and an AI agent — in one semester</div>
+      <p class="body">Every report, compliance check, and ERP update was manual. I built <b>21 Power Automate workflows</b> across five departments, deployed an <b>AI agent</b> that reads sales-order emails straight into Business Central ERP, and unified 15+ datasets into one model powering <b>7 Power BI dashboards</b> — then wrote the SOPs so every team could run it without me.</p>
+      <div class="impact">
+        <div class="pill"><b>26.5</b><span>hrs/week saved</span></div>
+        <div class="pill"><b>21</b><span>workflows</span></div>
+        <div class="pill"><b>7</b><span>dashboards</span></div>
+        <div class="pill"><b>15+</b><span>datasets unified</span></div>
+      </div>
+      <div class="tags"><span class="tag">Power Automate</span><span class="tag">Power BI</span><span class="tag">AI Agent</span><span class="tag">Business Central ERP</span><span class="tag">SOPs</span></div>
+      <div class="confid">Internal systems shown in numbers only — happy to walk through the architecture live.</div>
+    </div>
+
+    <div class="case reveal">
+      <div class="ghost-num">02</div>
+      <div class="case-top">
+        <h3>50% more throughput on a gear production floor</h3>
+        <div class="where">Revathie Gear Products · India · 2023</div>
+      </div>
+      <div class="headline">Simulation found the bottlenecks; leadership funded the fix</div>
+      <p class="body">Chronic bottlenecks, scattered production records. I simulated three product lines end-to-end in <b>ARENA</b>, redesigned the floor with <b>5S and Value Stream Mapping</b>, and digitized multi-year logs into an <b>Excel database with live-synced dashboards</b> the team still updates daily. Presented the findings to leadership and won capital funding for new equipment.</p>
+      <div class="impact">
+        <div class="pill"><b>+50%</b><span>throughput</span></div>
+        <div class="pill"><b>−30%</b><span>downtime</span></div>
+        <div class="pill"><b>+10%</b><span>floor efficiency</span></div>
+        <div class="pill"><b>✓</b><span>capital funding won</span></div>
+      </div>
+      <div class="tags"><span class="tag">ARENA Simulation</span><span class="tag">5S / VSM</span><span class="tag">Bottleneck Analysis</span><span class="tag">Excel Dashboards</span><span class="tag">CNC / CAD</span></div>
+    </div>
+
+    <div class="case reveal">
+      <div class="ghost-num">03</div>
+      <div class="case-top">
+        <h3>Predicting engine failure before it happens</h3>
+        <div class="where">Northeastern University · 2025</div>
+      </div>
+      <div class="headline">87% accurate health classification across 100 turbofan engines</div>
+      <p class="body">Engineered <b>24 statistical features</b> from multi-sensor time-series data, trained and tuned <b>Random Forest and LightGBM</b> classifiers in Python, and ranked every sensor's predictive power to isolate the single strongest degradation signal — a working blueprint for condition-based maintenance.</p>
+      <div class="impact">
+        <div class="pill"><b>87%</b><span>accuracy</span></div>
+        <div class="pill"><b>0.957</b><span>ROC AUC</span></div>
+        <div class="pill"><b>100</b><span>engines</span></div>
+        <div class="pill"><b>24</b><span>features engineered</span></div>
+      </div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">LightGBM</span><span class="tag">Predictive Maintenance</span></div>
+    </div>
+
+    <div class="case reveal">
+      <div class="ghost-num">04</div>
+      <div class="case-top">
+        <h3>Proving a capacity investment before spending it</h3>
+        <div class="where">Northeastern University · 2024</div>
+      </div>
+      <div class="headline">Weekly output modeled from 16.4 to 25 units — validated before any money moved</div>
+      <p class="body">A sprocket line was underproducing and the expensive question was which fix was worth buying. <b>VUT analysis and discrete-event simulation</b> isolated the bottlenecks at teeth-cutting and quality check; capacity-expansion scenarios — machine additions, in-house heat treatment, lean layout — were tested in the model first, so the investment case came with numbers attached.</p>
+      <div class="impact">
+        <div class="pill"><b>16.4 → 25</b><span>units/week</span></div>
+        <div class="pill"><b>1.5×</b><span>productivity</span></div>
+        <div class="pill"><b>13.6 min</b><span>worst queue found</span></div>
+      </div>
+      <div class="tags"><span class="tag">VUT Analysis</span><span class="tag">ARENA</span><span class="tag">Queueing</span><span class="tag">Capacity Planning</span></div>
+    </div>
+
+    <div class="mini-head reveal">Also in the archive</div>
+    <div class="mini-grid reveal">
+      <div class="mini">
+        <h5>Pfizer COVID-19 Vaccine — Supply Chain Resilience</h5>
+        <p>Mapped the global cold-chain distribution network in <b>Power BI</b>, tracing disruption points and benchmarking the response against resilience frameworks (redundancy, agility, visibility).</p>
+      </div>
+      <div class="mini">
+        <h5>Food Inspection Prioritization</h5>
+        <p>Risk-ranked <b>27,000+ Chicago restaurants</b> using 200+ violation keywords fused with geospatial and socioeconomic data, so inspectors go where the risk actually is.</p>
+      </div>
+      <div class="mini">
+        <h5>Retail Promotions ROI Analysis</h5>
+        <p>Dug through <b>134,000+ promotion records</b> to show most campaigns broke even or lost money, and where the seasonal ROI patterns said to spend instead.</p>
+      </div>
+      <div class="mini">
+        <h5>Cosmetics Toxicity Analysis</h5>
+        <p>Classified <b>94 hazardous chemicals across 33,000+ products</b> against EWG and Prop 65 benchmarks. <a href="https://github.com/sniting/toxic-beauty-report" target="_blank" rel="noopener">Public repo ↗</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="padding-top:16px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker">Toolkit</div>
+        <h2>Skills with receipts</h2>
+      </div>
+      <p>Nothing listed that isn't used in the work above or defensible in an interview.</p>
+    </div>
+    <div class="skill-grid reveal">
+      <div class="skill-card"><h4><span class="ico">🔧</span>Process &amp; Continuous Improvement</h4><div class="chips"><span class="chip">Lean Manufacturing</span><span class="chip">Six Sigma (Green Belt)</span><span class="chip">5S</span><span class="chip">Value Stream Mapping</span><span class="chip">Kaizen</span><span class="chip">DMAIC</span><span class="chip">Root Cause Analysis</span><span class="chip">FMEA</span><span class="chip">Time &amp; Motion Study</span><span class="chip">SOP Development</span></div></div>
+      <div class="skill-card"><h4><span class="ico">📐</span>Industrial Engineering &amp; Simulation</h4><div class="chips"><span class="chip">ARENA (Discrete-Event Simulation)</span><span class="chip">Capacity Planning</span><span class="chip">Bottleneck Analysis</span><span class="chip">Production Scheduling</span><span class="chip">Process Flow Mapping</span><span class="chip">Bill of Materials</span></div></div>
+      <div class="skill-card"><h4><span class="ico">📊</span>Data, Automation &amp; AI</h4><div class="chips"><span class="chip">Power BI (DAX, Power Query)</span><span class="chip">Power Automate</span><span class="chip">Python (Pandas, Scikit-Learn)</span><span class="chip">SQL</span><span class="chip">Excel (Advanced)</span><span class="chip">Tableau</span><span class="chip">Minitab</span><span class="chip">Claude Code</span><span class="chip">Prompt Engineering</span><span class="chip">GitHub</span></div></div>
+      <div class="skill-card"><h4><span class="ico">🏭</span>Manufacturing &amp; Systems</h4><div class="chips"><span class="chip">ERP (Business Central)</span><span class="chip">SolidWorks</span><span class="chip">Fusion 360</span><span class="chip">CNC Programming</span><span class="chip">GD&amp;T</span><span class="chip">Inventory &amp; Vendor Mgmt</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="padding-top:16px">
+  <div class="wrap two-col">
+    <div class="about reveal">
+      <div class="kicker">About</div>
+      <h2 style="font-size:clamp(24px,3vw,32px);letter-spacing:-.6px;margin:8px 0 16px">The engineer who builds the tools</h2>
+      <p>Most industrial engineers can find a bottleneck. Most analysts can build a dashboard. <b>I do both</b> — that combination is the whole story of my work so far.</p>
+      <p>At <b>S&amp;V Industries</b> I walked into a company with zero automation and left behind 21 workflows, 7 dashboards, and an AI agent doing a person's worth of data entry. At <b>Revathie Gear Products</b> I stood on the shop floor, simulated it, redesigned it, and handed leadership the numbers for new equipment.</p>
+      <p>I'm looking for a full-time role in <b>industrial, process, manufacturing, continuous improvement, or quality engineering</b>, anywhere in the US. What I want is simple: a team where I can walk the floor, find the constraint, build the system that removes it — and then do it again.</p>
+      <div class="fact-strip">
+        <div class="fact">🎓 <b>MS IE</b> · Northeastern, May 2026</div>
+        <div class="fact">🛂 <b>~3 yrs US work authorization</b> · STEM OPT</div>
+        <div class="fact">📦 <b>Supply Chain</b> graduate certificate</div>
+        <div class="fact">🚀 Available <b>immediately</b></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="kicker" style="margin-bottom:14px">Education &amp; Credentials</div>
+      <div class="edu-card">
+        <h4>Northeastern University</h4>
+        <div class="deg">MS Industrial Engineering · GPA 3.63/4.0<br>Graduate Certificate in Supply Chain Management</div>
+        <div class="yr">MAY 2026 · BOSTON, MA</div>
+      </div>
+      <div class="edu-card">
+        <h4>Vellore Institute of Technology</h4>
+        <div class="deg">B.Tech Mechanical Engineering</div>
+        <div class="yr">MAY 2023 · VELLORE, INDIA</div>
+      </div>
+      <div class="edu-card">
+        <h4 style="margin-bottom:8px">Certifications</h4>
+        <ul class="cert-list">
+          <li><b>Six Sigma Green Belt</b> — IISE</li>
+          <li><b>Lean Six Sigma White Belt</b> — Northeastern University</li>
+          <li><b>Data Analytics with Deep Learning</b> — NUS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:8px">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>The next one of these, I want to build on your team.</h2>
+      <p>I'm looking for a full-time role in industrial, process, manufacturing, continuous improvement, or quality engineering. Available immediately, authorized to work in the US for ~3 years on STEM OPT, open to any US location. If this looks like your kind of engineer, I'd love to talk.</p>
+      <div class="btns" style="justify-content:center">
+        <a class="btn btn-primary" href="mailto:nitingokulsubramaniamr@gmail.com">nitingokulsubramaniamr@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/nitingokuls" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+    <footer>© 2026 Nitin Gokul Subramaniam · Boston, MA · No templates were harmed in the making of this site</footer>
+  </div>
+</section>
+
+<!-- ---------- NitinBot ---------- -->
+<button id="bot-launch" onclick="botOpen()"><span class="live"></span>Ask NitinBot</button>
+<div id="bot" role="dialog" aria-label="NitinBot chat">
+  <div class="bot-head">
+    <div class="bot-avatar">⚙️</div>
+    <div><h5>NitinBot</h5><small>Scripted assistant · every answer pre-written &amp; true</small></div>
+    <button class="bot-close" onclick="botClose()" aria-label="Close chat">✕</button>
+  </div>
+  <div id="bot-log"></div>
+  <div id="bot-chips"></div>
+  <div class="bot-input">
+    <input id="bot-in" type="text" placeholder="Ask about Nitin…" autocomplete="off">
+    <button onclick="botSend()" aria-label="Send">➤</button>
+  </div>
+</div>
+
+<script>
+/* ---------- progress bar ---------- */
+const prog = document.getElementById('progress');
+addEventListener('scroll', () => {
+  const s = document.documentElement;
+  prog.style.width = (s.scrollTop / (s.scrollHeight - s.clientHeight) * 100) + '%';
+}, {passive:true});
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- count-up ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const runCount = el => {
+  const t = parseFloat(el.dataset.target), dec = +(el.dataset.dec || 0);
+  if (reduce){ el.textContent = t.toFixed(dec); return; }
+  const t0 = performance.now(), dur = 1400;
+  const step = now => {
+    const p = Math.min((now - t0) / dur, 1);
+    el.textContent = (t * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+const mio = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ runCount(e.target); mio.unobserve(e.target); }
+}), {threshold:.4});
+document.querySelectorAll('.count').forEach(c => mio.observe(c));
+
+/* ---------- NitinBot (scripted, zero backend, zero hallucination) ---------- */
+const BOT = document.getElementById('bot');
+const LOG = document.getElementById('bot-log');
+const IN  = document.getElementById('bot-in');
+const CHIPS = document.getElementById('bot-chips');
+
+const KB = [
+  { keys:['interview','hire','why','pitch','sell','good','strong','stand out','candidate'],
+    a:"Three reasons.\n\n1) He's a rare hybrid: a real Industrial Engineer (Lean, Six Sigma Green Belt, ARENA) who also BUILDS the automation — Power BI, Power Automate, Python, even a production AI agent. Most candidates have one half.\n\n2) He has receipts: 26.5 hrs/week of manual work removed at S&V Industries, +50% throughput at a gear manufacturer, a 0.957 ROC AUC maintenance model.\n\n3) Zero hiring friction: ~3 years of US work authorization on STEM OPT, available immediately, relocates anywhere.\n\nWant his email? Just ask." },
+  { keys:['visa','sponsor','authoriz','opt','stem','work permit','h1b','immigration','legal'],
+    a:"Straight answer, no surprises:\n\n• Authorized to work in the US today — F-1 STEM OPT gives him roughly 3 years.\n• Your company only needs to be E-Verify enrolled. No sponsorship cost, no lottery, nothing to file now.\n• Long-term he would need sponsorship (after ~3 years) — he's always upfront about that.\n\nFor a new-grad hire, that's 3 full years of runway before the question even comes up." },
+  { keys:['s&v','sv industries','co-op','coop','ohio','automate','workflow','agent','erp','digital transformation','power automate'],
+    a:"S&V Industries, Ohio — his US co-op (Aug–Dec 2025), and the best proof of what he does:\n\n• Walked into a company with ZERO automation\n• Built <b>21 Power Automate workflows</b> across 5 departments\n• Deployed an <b>AI agent</b> that reads sales-order emails and posts them into Business Central ERP, no human review\n• Unified 15+ datasets into one model powering <b>7 Power BI dashboards</b>\n• Wrote 6 illustrated SOPs so teams run it all without him\n\nNet result: <b>26.5 hours of manual work removed every week</b>." },
+  { keys:['revathie','gear','india','arena','simulation','throughput','shop floor','production engineer','bottleneck'],
+    a:"Revathie Gear Products, India — Assistant Production Engineer (2023):\n\n• Simulated 3 product lines end-to-end in ARENA to find the real bottlenecks\n• Redesigned the floor with 5S and Value Stream Mapping (+10% efficiency)\n• Digitized multi-year production logs into a live-synced Excel dashboard system\n• Presented findings to leadership and won capital funding for new equipment\n\nResults: <b>+50% throughput, −30% downtime</b>. Shop-floor credibility, not just spreadsheets." },
+  { keys:['project','turbofan','machine learning','ml ','python','predictive','maintenance','model','sprocket','vut'],
+    a:"Two favorites:\n\n<b>Turbofan predictive maintenance</b> — engineered 24 features from sensor data across 100 engines, trained Random Forest + LightGBM: 87% accuracy, 0.957 ROC AUC.\n\n<b>Sprocket line capacity study</b> — VUT analysis + ARENA simulation isolated the bottlenecks, then capacity scenarios lifted modeled output from 16.4 to 25 units/week (1.5x) BEFORE any money was spent.\n\nHe also has analytics projects in food-safety inspection prioritization, retail promotion ROI, and cosmetic-chemical hazard analysis." },
+  { keys:['skill','tool','software','stack','tech','know','power bi','excel','sql','tableau','solidworks','cad'],
+    a:"The toolkit, by category:\n\n• <b>Process/CI:</b> Lean, Six Sigma (Green Belt), 5S, VSM, Kaizen, DMAIC, RCA, FMEA\n• <b>IE & Simulation:</b> ARENA, capacity planning, bottleneck analysis, scheduling\n• <b>Data & AI:</b> Power BI, Power Automate, Python, SQL, Excel (advanced), Tableau, Minitab, Claude Code, prompt engineering\n• <b>Manufacturing:</b> Business Central ERP, SolidWorks, Fusion 360, CNC, GD&T\n\nHouse rule: nothing on the list he can't defend in an interview." },
+  { keys:['education','degree','master','gpa','northeastern','university','study','school','btech','vit'],
+    a:"• <b>MS Industrial Engineering</b> — Northeastern University, May 2026, GPA 3.63/4.0, plus a Graduate Certificate in Supply Chain Management\n• <b>B.Tech Mechanical Engineering</b> — Vellore Institute of Technology, India, 2023\n\nCertifications: Six Sigma Green Belt (IISE), Lean Six Sigma White Belt (NEU), Data Analytics with Deep Learning (NUS)." },
+  { keys:['cert','six sigma','green belt','belt','iise'],
+    a:"• <b>Six Sigma Green Belt</b> — Institute of Industrial and Systems Engineers (IISE)\n• <b>Lean Six Sigma White Belt</b> — Northeastern University\n• <b>Data Analytics with Deep Learning</b> — National University of Singapore" },
+  { keys:['relocat','location','where','move','boston','city','state','remote','onsite'],
+    a:"Based in Boston, MA — and genuinely open to relocating <b>anywhere in the US</b>. Midwest plant? Southern distribution hub? He'll be there. Onsite is not a problem; he likes being on the floor." },
+  { keys:['available','start','when','notice','date','join'],
+    a:"Available <b>immediately</b>. He graduated in May 2026 and his work authorization is already active — no notice period, no waiting on paperwork to begin." },
+  { keys:['contact','email','reach','linkedin','phone','call','touch','resume','cv'],
+    a:"📧 <b>nitingokulsubramaniamr@gmail.com</b>\n🔗 linkedin.com/in/nitingokuls\n\nEmail gets the fastest response, and his resume is one reply away. Tell him NitinBot sent you." },
+  { keys:['salary','pay','compensation','money','rate','expect'],
+    a:"That's a conversation for Nitin himself — I only sell, I don't negotiate. What I can say: he's an entry-level hire with mid-level output, and the email is nitingokulsubramaniamr@gmail.com." },
+  { keys:['weak','flaw','bad','worst','negative'],
+    a:"I'm a scripted bot, so I only know what Nitin fed me — and he didn't feed me dirt. Observable truth though: the man wrote SIX standard operating procedures at his co-op. He over-documents. Ask him the real question in an interview; he'll give you a real answer." },
+  { keys:['bot','chatbot','ai','real','human','script','how do you work'],
+    a:"Full transparency: I'm not a live AI — I'm a scripted assistant. Every answer was pre-written and fact-checked against Nitin's actual resume, so I can't exaggerate or make things up. Which, for a bot whose job is talking to recruiters about work authorization, is exactly how it should be. (He built me anyway — with AI-assisted development, of course.)" },
+  { keys:['hello','hi','hey','yo','good morning','good afternoon'],
+    a:"Hello! I'm NitinBot ⚙️ — the fastest way to screen Nitin without reading a single paragraph. Ask me why you should interview him, what he built at S&V, or about his work authorization. Or tap a chip below." },
+  { keys:['thank','thanks','great','cool','nice','awesome'],
+    a:"Anytime. I'll pass the compliment along — he reads my chat logs like performance reviews. Anything else? Work auth, projects, availability, contact?" }
+];
+const FALLBACK = "That one's beyond my script — I'm a curated bot, not a live AI (by design: I can't accidentally oversell him).\n\nI'm excellent on: <b>why interview him</b>, <b>S&V Industries</b>, <b>Revathie Gear</b>, <b>projects</b>, <b>skills</b>, <b>work authorization</b>, <b>availability</b>, and <b>contact info</b>. Or email the human directly: nitingokulsubramaniamr@gmail.com";
+const CHIP_QS = ["Why should we interview him?","What's his work authorization?","What did he build at S&V?","What tools does he use?","Is he open to relocation?","How do I contact him?"];
+
+let botBooted = false;
+function botOpen(q){
+  BOT.classList.add('open');
+  document.getElementById('bot-launch').style.display = 'none';
+  if(!botBooted){
+    botBooted = true;
+    addBot("Hi, I'm <b>NitinBot</b> ⚙️ — ask me anything about Nitin and I'll answer in seconds. Every answer is pre-written and true to his resume. Try a chip below, or type away.");
+    CHIP_QS.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'qchip'; b.textContent = c;
+      b.onclick = () => ask(c);
+      CHIPS.appendChild(b);
+    });
+  }
+  if(typeof q === 'string') setTimeout(() => ask(q), 350);
+  IN.focus();
+}
+function botClose(){
+  BOT.classList.remove('open');
+  document.getElementById('bot-launch').style.display = 'flex';
+}
+function addBot(html){
+  const d = document.createElement('div');
+  d.className = 'msg bot'; d.innerHTML = html;
+  LOG.appendChild(d); LOG.scrollTop = LOG.scrollHeight;
+}
+function addUser(t){
+  const d = document.createElement('div');
+  d.className = 'msg user'; d.textContent = t;
+  LOG.appendChild(d); LOG.scrollTop = LOG.scrollHeight;
+}
+function answer(q){
+  const s = q.toLowerCase();
+  let best = null, bestScore = 0;
+  for(const item of KB){
+    const score = item.keys.reduce((n,k) => n + (s.includes(k) ? (k.length > 4 ? 2 : 1) : 0), 0);
+    if(score > bestScore){ bestScore = score; best = item; }
+  }
+  return best ? best.a : FALLBACK;
+}
+function ask(q){
+  addUser(q);
+  const t = document.createElement('div');
+  t.className = 'msg bot typing'; t.innerHTML = '<i></i><i></i><i></i>';
+  LOG.appendChild(t); LOG.scrollTop = LOG.scrollHeight;
+  setTimeout(() => { t.remove(); addBot(answer(q)); }, 650 + Math.random()*450);
+}
+function botSend(){
+  const v = IN.value.trim();
+  if(!v) return;
+  IN.value = '';
+  ask(v);
+}
+IN?.addEventListener('keydown', e => { if(e.key === 'Enter') botSend(); });
+</script>
+</body>
+</html>
